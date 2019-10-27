@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  # reverse-proxy:
+  #   image: traefik # The official Traefik docker image
+  #   command:
+  #     # - --api
+  #     - --docker
+  #     - --docker.domain=traefik.local
+  #     - --docker.exposedByDefault=false
+  #   ports:
+  #     - "80:80"     # The HTTP port
+  #     - "443:443"   # The HTTPS port
+  #     - "8080:8080" # The Web UI (enabled by --api)
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #     - $PWD/traefik/traefik.toml:/traefik.toml
+  #     - $PWD/traefik/acme.json:/acme.json
+
+  #   networks:
+  #     - web
+
+  chung-cu-mini:
+    image: registry.taimh.xyz/chung-cu-mini
+    build:
+      context: .
+      dockerfile: run_client/Dockerfile
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=80"
+      - "traefik.frontend.rule=Host:chungcumini.taimh.xyz"
+    # volumes:
+    #   - /home/ftpuser/run_client/build:/usr/src/app/build
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
