@@ -36,7 +36,7 @@ MIT
 
 ## How it work
 ```
-1. Clone project at https://github.com/taimai0604/chung-cu-mini/invitations
+1. Clone project at reponse
 2. Install all packages: `npm install`
 3. Run localhost test: `npm run serve`
 4. Build production: `npm run build`
